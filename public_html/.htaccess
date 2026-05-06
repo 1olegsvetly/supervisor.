@@ -19,6 +19,9 @@ RewriteRule ^blog/([A-Za-z0-9-]+)/?$ blog.php?slug=$1 [L,QSA]
 RewriteRule ^knowledge/?$ knowledge.php [L,QSA]
 RewriteRule ^knowledge/([A-Za-z0-9-]+)/?$ knowledge.php?slug=$1 [L,QSA]
 
+# 2b. Страница входа
+RewriteRule ^login/?$ admin/login.php [L,QSA]
+
 # 3. Внутренний маппинг ЧПУ -> PHP (кроме блога и базы знаний)
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
