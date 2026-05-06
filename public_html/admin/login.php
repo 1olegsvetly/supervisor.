@@ -1,10 +1,14 @@
 <?php
 require_once '../functions.php';
+
+// Start session before any output
 session_start();
 
-// Debug mode
+// Debug mode - log everything
 $debug_log = [];
 $debug_log['start'] = 'Login script started';
+$debug_log['request_method'] = $_SERVER['REQUEST_METHOD'] ?? 'UNKNOWN';
+$debug_log['raw_POST'] = file_get_contents('php://input');
 $debug_log['POST'] = $_POST;
 $debug_log['SESSION_before'] = $_SESSION;
 
@@ -14,24 +18,28 @@ $debug_log['config_loaded'] = true;
 $debug_log['admin_login_from_config'] = $config['admin_login'] ?? 'NOT_SET';
 $debug_log['admin_password_from_config'] = $config['admin_password'] ?? 'NOT_SET';
 
-if (isset($_POST['login']) && isset($_POST['password'])) {
-    $login = trim($_POST['login']);
-    $password = $_POST['password'];
+// Handle login form submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $login = isset($_POST['login']) ? trim($_POST['login']) : '';
+    $password = $_POST['password'] ?? '';
     
     $debug_log['input_login'] = $login;
+    $debug_log['input_password'] = $password;
     $debug_log['input_password_length'] = strlen($password);
-    $debug_log['config_admin_login'] = $config['admin_login'];
-    $debug_log['config_admin_password'] = $config['admin_password'];
-    $debug_log['login_match'] = ($login === $config['admin_login']);
-    $debug_log['password_match'] = ($password === $config['admin_password']);
+    $debug_log['config_admin_login'] = $config['admin_login'] ?? 'NOT_SET';
+    $debug_log['config_admin_password'] = $config['admin_password'] ?? 'NOT_SET';
+    $debug_log['login_match'] = ($login === ($config['admin_login'] ?? ''));
+    $debug_log['password_match'] = ($password === ($config['admin_password'] ?? ''));
     
-    if ($login === $config['admin_login'] && $password === $config['admin_password']) {
+    if (!empty($login) && !empty($password) && 
+        $login === ($config['admin_login'] ?? '') && 
+        $password === ($config['admin_password'] ?? '')) {
         $_SESSION['admin'] = true;
         $_SESSION['admin_login_time'] = time();
         $debug_log['auth_result'] = 'SUCCESS';
         $debug_log['SESSION_after'] = $_SESSION;
         
-        // Save debug log
+        // Save debug log before redirect
         file_put_contents(__DIR__ . '/login_debug.log', json_encode($debug_log, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         
         header('Location: index.php');
@@ -40,6 +48,7 @@ if (isset($_POST['login']) && isset($_POST['password'])) {
         $error = "Неверный логин или пароль";
         $debug_log['auth_result'] = 'FAILED';
         $debug_log['error'] = $error;
+        $debug_log['reason'] = 'Credentials mismatch or empty fields';
     }
 }
 
