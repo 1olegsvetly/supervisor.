@@ -1,0 +1,35 @@
+Options -Indexes
+RewriteEngine On
+
+# 1. Редирект с .php на ЧПУ (чтобы не было дублей)
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+(.+)\.php[\s?] [NC]
+RewriteRule ^(.+)\.php$ /$1 [R=301,L]
+
+# 1b. 301 редиректы со старых ?slug= ссылок на ЧПУ
+# /blog?slug=foo -> /blog/foo
+RewriteCond %{QUERY_STRING} ^slug=([A-Za-z0-9-]+)(&.*)?$
+RewriteRule ^blog/?$ /blog/%1? [R=301,L]
+# /knowledge?slug=foo -> /knowledge/foo
+RewriteCond %{QUERY_STRING} ^slug=([A-Za-z0-9-]+)(&.*)?$
+RewriteRule ^knowledge/?$ /knowledge/%1? [R=301,L]
+
+# 2. Красивые URL для блога и базы знаний
+RewriteRule ^blog/?$ blog.php [L,QSA]
+RewriteRule ^blog/([A-Za-z0-9-]+)/?$ blog.php?slug=$1 [L,QSA]
+RewriteRule ^knowledge/?$ knowledge.php [L,QSA]
+RewriteRule ^knowledge/([A-Za-z0-9-]+)/?$ knowledge.php?slug=$1 [L,QSA]
+
+# 3. Внутренний маппинг ЧПУ -> PHP (кроме блога и базы знаний)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# Кэширование статических файлов
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
