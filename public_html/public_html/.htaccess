@@ -1,8 +1,9 @@
 Options -Indexes
 RewriteEngine On
 
-# Исключаем админку из всех правил
-RewriteCond %{REQUEST_URI} !^/admin/
+# Полное исключение админки из всех правил перезаписи
+RewriteCond %{REQUEST_URI} ^/admin/ [NC]
+RewriteRule ^ - [L]
 
 # 1. Редирект с .php на ЧПУ (чтобы не было дублей)
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+(.+)\.php[\s?] [NC]
