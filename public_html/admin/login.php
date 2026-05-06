@@ -83,9 +83,9 @@ file_put_contents(__DIR__ . '/login_debug.log', json_encode($debug_log, JSON_PRE
         <?php if (isset($error)): ?>
             <p class="error"><?php echo $error; ?></p>
         <?php endif; ?>
-        <form action="login.php" method="POST" class="login-form">
-            <input type="text" name="login" placeholder="Логин" class="form-input" required>
-            <input type="password" name="password" placeholder="Пароль" class="form-input" required>
+        <form action="login.php" method="post" class="login-form">
+            <input type="text" name="login" placeholder="Логин" class="form-input" required autocomplete="username">
+            <input type="password" name="password" placeholder="Пароль" class="form-input" required autocomplete="current-password">
             <button type="submit" class="btn btn--primary">Войти</button>
         </form>
     </div>
