@@ -1,8 +1,11 @@
 <?php
-require_once '../functions.php';
-
-// Start session before any output
+// Start session with explicit parameters before any output
+ini_set('session.cookie_httponly', '1');
+ini_set('session.cookie_samesite', 'Lax');
+ini_set('session.use_strict_mode', '1');
 session_start();
+
+require_once '../functions.php';
 
 // Debug mode - log everything
 $debug_log = [];
@@ -11,6 +14,8 @@ $debug_log['request_method'] = $_SERVER['REQUEST_METHOD'] ?? 'UNKNOWN';
 $debug_log['raw_POST'] = file_get_contents('php://input');
 $debug_log['POST'] = $_POST;
 $debug_log['SESSION_before'] = $_SESSION;
+$debug_log['session_id'] = session_id();
+$debug_log['session_save_path'] = session_save_path();
 
 // Initialize config explicitly
 $config = getConfig();
@@ -38,11 +43,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['admin_login_time'] = time();
         $debug_log['auth_result'] = 'SUCCESS';
         $debug_log['SESSION_after'] = $_SESSION;
+        $debug_log['session_regenerated'] = session_regenerate_id(true);
         
         // Save debug log before redirect
         file_put_contents(__DIR__ . '/login_debug.log', json_encode($debug_log, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         
-        header('Location: index.php');
+        // Use absolute URL for redirect
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+        $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+        $basePath = dirname($_SERVER['SCRIPT_NAME']);
+        header('Location: ' . $protocol . '://' . $host . $basePath . '/index.php');
         exit;
     } else {
         $error = "Неверный логин или пароль";
