@@ -1,0 +1,36 @@
+{
+    "site_name": "Supervisor VPN",
+    "site_url": "https://supervisor.net.ru",
+    "tg_bot_link": "https://t.me/VPNSupervisorBot?start=8716664987",
+    "bot_username": "@VPNSupervisorBot",
+    "support_email": "support@supervisor.net.ru",
+    "support_telegram": "@VPNSupervisorBot?start=8716664987",
+    "admin_login": "admin",
+    "admin_password": "admin1",
+    "colors": {
+        "bg_main": "#0A0F1C",
+        "bg_secondary": "#111827",
+        "accent_cyan": "#00F0FF",
+        "accent_purple": "#7000FF",
+        "text_main": "#F8FAFC",
+        "text_secondary": "#94A3B8"
+    },
+    "seo": {
+        "home_title": "VPN — Безопасный VPN-сервис в России",
+        "home_description": "Настройка VPN в России 2026: пошаговые инструкции для Windows, Android, iPhone и Keenetic. WireGuard, OpenVPN, обход блокировок Telegram и YouTube. Быстро, стабильно, безопасно. VPN для России 2026: настройка WireGuard, OpenVPN, Shadowsocks. Обходим блокировки и возвращаем высокую скорость. Гайды для ПК, Android, iOS, роутеров.",
+        "home_keywords": "VPN, впн, vpn для России, настройка VPN, WireGuard, OpenVPN, Shadowsocks, VLESS, VMess, Keenetic VPN, настройка VPN на роутере, обход блокировок, как обойти блокировку Telegram, как открыть YouTube в России, VPN для Windows 10, VPN для Windows 11, VPN для Android, VPN для iPhone, VPN для iPad, бесплатный VPN, платный VPN, лучший VPN 2026, быстрый VPN, стабильный VPN, почему VPN замедляет интернет, ускорить VPN, скорость VPN, VPN тормозит, решение проблем VPN, VPN не подключается, ошибка VPN, импорт конфигурации WireGuard, OpenVPN Connect, настройка OpenVPN на Android, obfuscation VPN, Scramble, маскировка VPN, DPI блокировка, обфускация, MTU VPN, WireGuard Keenetic, VPN для всех устройств, VPN для телевизора, VPN для приставки, домашний VPN, VPN без логов, безопасность VPN, приватность VPN, VPN и блокировки, VPN в России 2026, купить VPN, дешёвый VPN, VPN сервер, прокси, MTProto прокси, GoodbyeDPI, zapret, IKEv2, VPN на iOS, инструкция VPN, как настроить VPN, подключить VPN, статьи о VPN, блог VPN.",
+        "knowledge_title": "База знаний VPN: инструкции по настройке WireGuard, OpenVPN, Keenetic. База знаний VPN — инструкции и гайды 2026",
+        "knowledge_description": "Пошаговые инструкции по настройке VPN в России: WireGuard, OpenVPN, роутеры Keenetic, Android, iPhone. Обход блокировок, восстановление скорости. База знаний Supervisor. Настройка VPN в России 2026: WireGuard, OpenVPN, Keenetic, Android, iOS. Инструкции, обход блокировок Telegram и YouTube. Всё в базе знаний Supervisor.",
+        "blog_title": "Supervisor VPN — инструкции, гайды и советы по настройке VPN в России. Статьи о настройке VPN в России: гайды, сравнения, советы | Блог Supervisor",
+        "blog_description": "Статьи о VPN в России: как настроить WireGuard и OpenVPN, обойти блокировки Telegram и YouTube, вернуть высокую скорость. Читайте блог Supervisor. Статьи о настройке VPN в России 2026: сравнение протоколов, советы по скорости, обход DPI. Блог Supervisor для стабильного и безопасного интернета.",
+        "robots_txt": "User-agent: *\r\nAllow: /\r\nDisallow: /admin/\r\nDisallow: /css/\r\nDisallow: /data/\r\nDisallow: /js/\r\nDisallow: /config/\r\n\r\nSitemap: https://supervisor.net.ru/sitemap.xml"
+    },
+    "analytics_code": "<!-- Google tag (gtag.js) -->\r\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-5912GRFT6W\"></script>\r\n<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-5912GRFT6W');\r\n</script>",
+    "migration": {
+        "previous_site_name": "Supervisor VPN",
+        "previous_site_url": "https://supervisor.net.ru",
+        "new_site_name": "Supervisor VPN",
+        "new_site_url": "https://supervisor.net.ru",
+        "migrated_at": "2026-04-30T17:10:43+03:00"
+    }
+}
