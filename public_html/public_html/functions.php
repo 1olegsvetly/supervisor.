@@ -71,7 +71,7 @@ function getConfig(): array {
         'support_email' => 'support@' . requestHost(),
         'support_telegram' => '@support',
         'admin_login' => 'admin',
-        'admin_password' => 'admin',
+        'admin_password' => 'admin1',
         'colors' => [
             'bg_main' => '#0A0F1C',
             'bg_secondary' => '#111827',
