@@ -1,6 +1,9 @@
 Options -Indexes
 RewriteEngine On
 
+# Исключаем админку из всех правил
+RewriteCond %{REQUEST_URI} !^/admin/
+
 # 1. Редирект с .php на ЧПУ (чтобы не было дублей)
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+(.+)\.php[\s?] [NC]
 RewriteRule ^(.+)\.php$ /$1 [R=301,L]
